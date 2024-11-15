@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Bash
+
+rm -rf $HOME/.bash_aliases
+ln -s $DOTFILES/bash/.bash_aliases $HOME/.bash_aliases
