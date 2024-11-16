@@ -1,9 +1,9 @@
 # Pop-os
 # same as explorer.exe
-alias nt=nautilus
+alias nt='nautilus'
 
 # Git
-alias gs=git status
+alias gs='git status'
 
 # Laravel
-alias pls=php artisan
+alias pls='php artisan'
