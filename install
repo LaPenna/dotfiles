@@ -6,3 +6,8 @@ DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 rm -rf $HOME/.bash_aliases
 ln -s $DOTFILES/bash/.bash_aliases $HOME/.bash_aliases
+
+# Kitty
+
+rm -rf $HOME/.config/kitty
+ln -s $DOTFILES/kitty $HOME/.config/kitty
