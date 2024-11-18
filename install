@@ -14,5 +14,10 @@ ln -s $DOTFILES/kitty $HOME/.config/kitty
 
 # Zsh
 
-rm -rf $HOME/.config/.zshrc
+rm -rf $HOME/.zshrc
 ln -s $DOTFILES/zsh/.zshrc $HOME/.zshrc
+
+# Starship
+
+rm -rf $HOME/.config/starship.toml
+ln -s $DOTFILES/starship/starship.toml $HOME/.config/starship.toml
