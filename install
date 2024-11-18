@@ -11,3 +11,8 @@ ln -s $DOTFILES/bash/.bash_aliases $HOME/.bash_aliases
 
 rm -rf $HOME/.config/kitty
 ln -s $DOTFILES/kitty $HOME/.config/kitty
+
+# Zsh
+
+rm -rf $HOME/.config/.zshrc
+ln -s $DOTFILES/zsh/.zshrc $HOME/.zshrc
