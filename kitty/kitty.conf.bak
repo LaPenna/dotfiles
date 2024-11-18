@@ -13,6 +13,6 @@ window_padding_width 20
 
 
 # BEGIN_KITTY_THEME
-# Kaolin Ocean
+# Brogrammer
 include current-theme.conf
 # END_KITTY_THEME
