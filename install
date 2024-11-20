@@ -26,3 +26,10 @@ ln -s $DOTFILES/starship/starship.toml $HOME/.config/starship.toml
 
 rm -rf $HOME/.tmux.conf
 ln -s $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
+
+# Scripts
+
+# t
+mkdir -p $HOME/.local/bin # ensure dir exists
+rm -rf $HOME/.local/bin/t
+ln -s $DOTFILES/scripts/t $HOME/.local/bin/t
