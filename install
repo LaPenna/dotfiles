@@ -33,3 +33,8 @@ ln -s $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
 mkdir -p $HOME/.local/bin # ensure dir exists
 rm -rf $HOME/.local/bin/t
 ln -s $DOTFILES/scripts/t $HOME/.local/bin/t
+
+# nvim
+
+rm -rf $HOME/.config/nvim
+ln -s $DOTFILES/nvim $HOME/.config/nvim
