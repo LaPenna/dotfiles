@@ -25,10 +25,11 @@ vim.opt.fillchars:append({ eob = ' ' })
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
--- vim.opt.scrolloff = 10
--- vim.opt.sidescrolloff = 10
+vim.opt.scrolloff = 10
+vim.opt.sidescrolloff = 10
 
-vim.keymap.set('n', 'j', 'jzz', { noremap = true })
-vim.keymap.set('n', 'k', 'kzz', { noremap = true })
+-- Cursor sticks to center
+-- vim.keymap.set('n', 'j', 'jzz', { noremap = true })
+-- vim.keymap.set('n', 'k', 'kzz', { noremap = true })
 
-print('heeeeeelo')
+print('options loaded')
