@@ -1,4 +1,7 @@
 vim.opt.termguicolors = true
+-- Tell Neovim to respect terminal background
+vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
 vim.opt.title = true
 
 vim.opt.expandtab = false
@@ -27,6 +30,11 @@ vim.opt.splitright = true
 
 vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 10
+
+vim.opt.clipboard = 'unnamedplus' -- use system clipboard default
+
+vim.opt.confirm = true -- ask to save file instead of error
+vim.opt.undofile = true
 
 -- Cursor sticks to center
 -- vim.keymap.set('n', 'j', 'jzz', { noremap = true })
