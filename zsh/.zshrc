@@ -2,8 +2,15 @@ eval "$(starship init zsh)"
 
 # Alias
 
-## ls et al
+# System Utils
+nt() {
+  local target="${1:-.}"
+  (nautilus "$target" >/dev/null 2>&1 &)
+}
+
+## Terminal, paths and navigation
 alias ll='ls -l'
+alias ..='cd ../'
 
 ## Git
 alias gis='git status'
