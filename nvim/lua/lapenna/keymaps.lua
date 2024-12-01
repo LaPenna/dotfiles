@@ -15,6 +15,9 @@ vim.keymap.set('v', '>', '>gv')
 vim.keymap.set('v', 'y', 'myy`y')
 vim.keymap.set('v', 'Y', 'myY`y')
 
+-- Paste replace visual selection without copying it.
+vim.keymap.set('v', 'p', '"_dP')
+
 -- Clear search highlighting.
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
@@ -28,17 +31,14 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [d]iagn
 -- Allow gf to open non-existent files.
 vim.keymap.set('', 'gf', ':edit <cfile><CR>')
 
--- Paste replace visual selection without copying it.
-vim.keymap.set('v', 'p', '"_dP')
-
 -- Reselect pasted text
 -- vim.keymap.set('n', 'p', 'p`[v`]')
 
 -- Easy insertion of a trailing ; or , from insert mode.
-vim.keymap.set('i', ';;', '<Esc>A;<Esc>')
-vim.keymap.set('i', ',,', '<Esc>A,<Esc>')
+-- vim.keymap.set('i', ';;', '<Esc>A;<Esc>')
+-- vim.keymap.set('i', ',,', '<Esc>A,<Esc>')
 vim.keymap.set('n', ',,', 'A,<Esc>')
-vim.keymap.set('n', ';;', 'A,<Esc>');
+vim.keymap.set('n', ';;', 'A;<Esc>')
 
 -- open the current file in the default program (on mac this should just be just `open`).
 -- vim.keymap.set('n', '<leader>x', ':!xdg-open %<cr><cr>')
