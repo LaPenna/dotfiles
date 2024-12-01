@@ -38,8 +38,3 @@ ln -s $DOTFILES/scripts/t $HOME/.local/bin/t
 
 rm -rf $HOME/.config/nvim
 ln -s $DOTFILES/nvim $HOME/.config/nvim
-
-# AHK
-
-rm -rf $HOME/.config/ahk
-ln -s $DOTFILES/ahk $HOME/.config/ahk
