@@ -44,14 +44,15 @@ vim.keymap.set('n', ';;', 'A;<Esc>')
 -- vim.keymap.set('n', '<leader>x', ':!xdg-open %<cr><cr>')
 
 -- Resize with arrows.
-vim.keymap.set('n', '<C-Up>', ':resize +2<CR>')
-vim.keymap.set('n', '<C-Down>', ':resize -2<CR>')
-vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>')
-vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>')
+-- vim.keymap.set('n', '<C-Up>', ':resize +2<CR>')
+-- vim.keymap.set('n', '<C-Down>', ':resize -2<CR>')
+-- vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>')
+-- vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>')
 
 -- Move text up and down
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")vim.keymap.set('i', '<A-k>', '<Esc>:move .-2<CR>==gi')
 -- vim.keymap.set('i', '<A-j>', '<Esc>:move .+1<CR>==gi')
--- vim.keymap.set('i', '<A-k>', '<Esc>:move .-2<CR>==gi')
 -- vim.keymap.set('n', '<A-j>', ':move .+1<CR>==')
 -- vim.keymap.set('n', '<A-k>', ':move .-2<CR>==')
 -- vim.keymap.set('v', '<A-j>', ":move '>+1<CR>gv=gv")
