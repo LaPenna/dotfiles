@@ -14,17 +14,33 @@ local packer_bootstrap = ensure_packer()
 
 require('packer').reset()
 require('packer').init({
-	compile_path = vim.fn.stdpath('data')..'/site/plugin/packer_compiled.lua',
-	display = {
-		open_fn = function() 
-			return require('packer.util').float({border = 'solid' })
-		end,
-	},
+  compile_path = vim.fn.stdpath('data')..'/site/plugin/packer_compiled.lua',
+  display = {
+    open_fn = function() 
+      return require('packer.util').float({ border = 'solid' })
+    end,
+  },
 })
 
 local use = require('packer').use
 use 'wbthomason/packer.nvim'
 -- My plugins here
+
+-- Theme
+use({
+  'yashguptaz/calvera-dark.nvim',
+  config = function()
+    -- Optional Example Configuration
+    vim.g.calvera_italic_keywords = true
+    vim.g.calvera_italic_comments = true
+    vim.g.calvera_borders = false
+    vim.g.calvera_contrast = true
+    vim.g.calvera_hide_eob = true
+    vim.g.calvera_custom_colors = {contrast = "#1ce1ce"}
+
+    require('calvera').set()
+  end,
+})
 
 -- Commenting support.
 use({
@@ -122,8 +138,8 @@ if packer_bootstrap then
 end
 
 vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile>
-  augroup end
+augroup packer_user_config
+autocmd!
+autocmd BufWritePost plugins.lua source <afile>
+augroup end
 ]])
