@@ -131,6 +131,21 @@ use({
   end,
 })
 
+-- Fuzzy finder
+use({
+  'nvim-telescope/telescope.nvim',
+  after = 'calvera-dark.nvim',
+  requires = {
+    'nvim-lua/plenary.nvim',
+    'kyazdani42/nvim-web-devicons',
+    'nvim-telescope/telescope-live-grep-args.nvim',
+    { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+  },
+  config = function()
+    require('lapenna/plugins/telescope')
+  end,
+})
+
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
 if packer_bootstrap then
