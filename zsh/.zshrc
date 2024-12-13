@@ -22,6 +22,10 @@ nah () {
     fi
 }
 
+## Tmux
+alias ta='tmux attach'
+alias tks='tmux kill-server'
+
 typeset -U path cdpath fpath
 path=(
     $HOME/.local/bin
