@@ -58,7 +58,10 @@ use ({
   requires = { 'nvim-tree/nvim-web-devicons', opt = true },
   config = function()
     require('lualine').setup {
-      options = { theme  = 'nightfly' },
+      options = {
+        theme  = 'nightfly',
+        globalstatus = true,
+      },
     }
   end,
 })
