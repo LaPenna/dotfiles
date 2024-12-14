@@ -39,6 +39,27 @@ use({
     vim.g.calvera_custom_colors = {contrast = "#1ce1ce"}
 
     require('calvera').set()
+
+    vim.api.nvim_set_hl(0, 'FloatBorder', {
+      fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
+      bg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
+    })
+
+    vim.api.nvim_set_hl(0, 'CursorLineBg', {
+      fg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
+      bg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
+    })
+  end,
+})
+
+-- Custom status line
+use ({
+  'nvim-lualine/lualine.nvim',
+  requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+  config = function()
+    require('lualine').setup {
+      options = { theme  = 'nightfly' },
+    }
   end,
 })
 
@@ -143,6 +164,15 @@ use({
   },
   config = function()
     require('lapenna/plugins/telescope')
+  end,
+})
+
+-- File tree sidebare
+use({
+  'kyazdani42/nvim-tree.lua',
+  requires = 'kyazdani42/nvim-web-devicons',
+  config = function()
+    require('lapenna/plugins/nvim-tree')
   end,
 })
 
