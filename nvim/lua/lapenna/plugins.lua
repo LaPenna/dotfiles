@@ -55,6 +55,7 @@ use({
 -- Custom status line
 use ({
   'nvim-lualine/lualine.nvim',
+  after = 'calvera-dark.nvim',
   requires = { 'nvim-tree/nvim-web-devicons', opt = true },
   config = function()
     require('lualine').setup {
