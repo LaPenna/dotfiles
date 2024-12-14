@@ -19,5 +19,3 @@ if vim.fn.exists('$TMUX') == 1 then
     end
   })
 end
-require('lapenna/commands')
-
