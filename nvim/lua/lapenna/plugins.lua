@@ -52,6 +52,18 @@ use({
   end,
 })
 
+use {
+  'nvimdev/dashboard-nvim',
+  event = 'VimEnter',
+  config = function()
+    require('lapenna/plugins/dashboard-nvim').setup {
+      -- config
+    }
+    -- require('lapenna/plugins/dashboard')
+  end,
+  requires = {'nvim-tree/nvim-web-devicons'}
+}
+
 -- Custom status line
 use ({
   'nvim-lualine/lualine.nvim',
