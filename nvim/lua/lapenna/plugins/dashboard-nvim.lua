@@ -4,6 +4,7 @@ require('dashboard').setup({
     header = {
       '',
       '',
+      '',
       ' ▄█          ▄████████         ▄███████▄    ▄████████   ███▄▄▄▄    ███▄▄▄▄      ▄████████ ',
       ' ███         ███    ███        ███    ███   ███    █▀   ███▀▀▀██▄  ███▀▀▀██▄   ███    ███ ',
       ' ███         ███    ███        ███    ███  ▄███▄▄▄      ███   ███  ███   ███   ███    ███ ',
@@ -19,7 +20,7 @@ require('dashboard').setup({
       { icon = '  ', desc = 'Recent files            ', key = 'Space + h', action = 'Telescope oldfiles' },
       { icon = '  ', desc = 'Find Word               ', key = 'Space + g', action = 'Telescope live_grep' },
     },
-    footer = { '' }
+    footer = { '♥‿♥' }
   },
   hide = {
     statusline = false,
@@ -28,8 +29,8 @@ require('dashboard').setup({
   }
 })
 
-vim.api.nvim_set_hl(0, 'DashboardHeader', { fg = '#6272a4' })
+vim.api.nvim_set_hl(0, 'DashboardHeader', { fg = '#dd479b' })
 vim.api.nvim_set_hl(0, 'DashboardDesc', { fg = '#f8f8f2' })
-vim.api.nvim_set_hl(0, 'DashboardIcon', { fg = '#bd93f9' })
+vim.api.nvim_set_hl(0, 'DashboardIcon', { fg = '#dd479b' })
 vim.api.nvim_set_hl(0, 'DashboardKey', { fg = '#6272a4' })
-vim.api.nvim_set_hl(0, 'DashboardFooter', { fg = '#6272a4' })
+vim.api.nvim_set_hl(0, 'DashboardFooter', { fg = '#dd479b' })
