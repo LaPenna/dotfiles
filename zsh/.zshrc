@@ -7,6 +7,7 @@ nt() {
   local target="${1:-.}"
   (nautilus "$target" >/dev/null 2>&1 &)
 }
+alias subdir-sizes='find . -mindepth 2 -maxdepth 2 -type d -exec du -sh {} + | sort -h'
 
 ## Terminal, paths and navigation
 alias ll='ls -l'
