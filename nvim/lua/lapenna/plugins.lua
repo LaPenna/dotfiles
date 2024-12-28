@@ -192,6 +192,16 @@ use({
   end,
 })
 
+use({
+  'voldikss/vim-floaterm',
+  config = function()
+    vim.g.floaterm_width = 0.8
+    vim.g.floaterm_height = 0.8
+    vim.keymap.set('n', "<leader>'", ':FloatermToggle<CR>')
+    vim.keymap.set('t', "<esc>", '<C-\\><C-n>:FloatermToggle<CR>')
+  end,
+})
+
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
 if packer_bootstrap then
