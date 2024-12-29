@@ -1,5 +1,15 @@
 eval "$(starship init zsh)"
 
+HYPHEN_INSENSITIVE="true"
+COMPLETION_WAITING_DOTS="true"
+HIST_STAMPS="yyyy-mm-dd"
+VI_MODE_SET_CURSOR=true
+VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+
+export EDITOR=nvim
+export GIT_EDITOR=nvim
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+
 # Alias
 
 # System Utils
@@ -33,3 +43,9 @@ path=(
     /opt/nvim-linux64/bin
     $path
 )
+
+### Laravel
+alias pls='php artisan'
+alias mfs='php artisan migrate:fresh --seed'
+
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
