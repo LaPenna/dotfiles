@@ -49,3 +49,4 @@ alias pls='php artisan'
 alias mfs='php artisan migrate:fresh --seed'
 
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+alias spls='sail artisan'
