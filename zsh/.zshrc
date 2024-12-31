@@ -12,12 +12,16 @@ export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
 # Alias
 
-# System Utils
+## System Utils
 nt() {
   local target="${1:-.}"
   (nautilus "$target" >/dev/null 2>&1 &)
 }
 alias subdir-sizes='find . -mindepth 2 -maxdepth 2 -type d -exec du -sh {} + | sort -h'
+
+## media
+alias yt='mpv --no-video'
+alias yts='function _yts() { video_info=$(yt-dlp --no-warnings --print "title" --get-url "ytsearch1:$*"); video_title=$(echo "$video_info" | head -n 1); video_url=$(echo "$video_info" | tail -n 1); echo "Now playing: $video_title"; mpv --no-video "$video_url"; }; _yts'
 
 ## Terminal, paths and navigation
 alias ll='ls -l'
@@ -44,7 +48,7 @@ path=(
     $path
 )
 
-### Laravel
+## Laravel
 alias pls='php artisan'
 alias mfs='php artisan migrate:fresh --seed'
 
