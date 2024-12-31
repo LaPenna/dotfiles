@@ -13,6 +13,8 @@ export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 # Alias
 
 ## System Utils
+alias copy="xclip -selection clipboard"
+alias paste="xclip -o -selection clipboard"
 nt() {
   local target="${1:-.}"
   (nautilus "$target" >/dev/null 2>&1 &)
