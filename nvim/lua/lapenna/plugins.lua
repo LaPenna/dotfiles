@@ -56,10 +56,7 @@ use {
   'nvimdev/dashboard-nvim',
   event = 'VimEnter',
   config = function()
-    require('lapenna/plugins/dashboard-nvim').setup {
-      -- config
-    }
-    -- require('lapenna/plugins/dashboard')
+    require('lapenna/plugins/dashboard-nvim')
   end,
   requires = {'nvim-tree/nvim-web-devicons'}
 }
@@ -199,6 +196,21 @@ use({
     vim.g.floaterm_height = 0.8
     vim.keymap.set('n', "<leader>'", ':FloatermToggle<CR>')
     vim.keymap.set('t', "<esc>", '<C-\\><C-n>:FloatermToggle<CR>')
+  end,
+})
+
+-- Improved syntax highlighting
+use({
+  'nvim-treesitter/nvim-treesitter',
+  run = function()
+    require('nvim-treesitter.install').update({ with_sync = true })
+  end,
+  requires = {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    'nvim-treesitter/nvim-treesitter-textobjects',
+  },
+  config = function()
+    require('lapenna/plugins/treesitter')
   end,
 })
 
