@@ -131,19 +131,26 @@ use({
   end,
 })
 
--- Automatically add closing brackets, quotes, etc.
-use({
-  'windwp/nvim-autopairs',
-  config = function()
-    require('nvim-autopairs').setup()
-  end,
-})
+-- -- Automatically add closing brackets, quotes, etc.
+-- use({
+--   'windwp/nvim-autopairs',
+--   config = function()
+--     require('nvim-autopairs').setup()
+--   end,
+-- })
 
 -- Add smooth scrolling to avoid jarring jumps
 use({
   'karb94/neoscroll.nvim',
   config = function()
     require('neoscroll').setup()
+  end,
+})
+
+use({
+  'sphamba/smear-cursor.nvim',
+  config = function()
+    require('smearr_cursor').setup()
   end,
 })
 
