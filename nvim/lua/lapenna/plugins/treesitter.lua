@@ -4,9 +4,7 @@ require('nvim-treesitter.configs').setup({
     enable = true,
     additional_vim_regex_highlighting = true,
   },
-  context_commentstring = {
-    enable = true,
-  },
+  require('nvim-treesitter.configs').setup {},
   textobjects = {
     select = {
       enable = true,
