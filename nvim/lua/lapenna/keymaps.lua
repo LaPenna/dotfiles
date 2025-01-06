@@ -58,3 +58,5 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")vim.keymap.set('i', '<A-k>', '<Esc>:
 -- vim.keymap.set('n', '<A-k>', ':move .-2<CR>==')
 -- vim.keymap.set('v', '<A-j>', ":move '>+1<CR>gv=gv")
 -- vim.keymap.set('v', '<A-k>', ":move '<-2<CR>gv=gv")
+
+vim.keymap.set("n", "d0", "0D")
