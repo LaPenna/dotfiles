@@ -131,29 +131,6 @@ use({
   end,
 })
 
--- -- Automatically add closing brackets, quotes, etc.
--- use({
---   'windwp/nvim-autopairs',
---   config = function()
---     require('nvim-autopairs').setup()
---   end,
--- })
-
--- Add smooth scrolling to avoid jarring jumps
-use({
-  'karb94/neoscroll.nvim',
-  config = function()
-    require('neoscroll').setup()
-  end,
-})
-
-use({
-  'sphamba/smear-cursor.nvim',
-  config = function()
-    require('smearr_cursor').setup()
-  end,
-})
-
 -- Split arrays and methods onto multiple lines, or join them back up.
 use({
   'AndrewRadev/splitjoin.vim',
@@ -218,6 +195,51 @@ use({
   },
   config = function()
     require('lapenna/plugins/treesitter')
+  end,
+})
+
+use {
+  'abecodes/tabout.nvim',
+  config = function()
+    require('tabout').setup {
+      tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
+      backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
+      act_as_tab = true, -- shift content if tab out is not possible
+      act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+      default_tab = '<C-t>', -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
+      default_shift_tab = '<C-d>', -- reverse shift default action,
+      enable_backwards = true, -- well ...
+      completion = true, -- if the tabkey is used in a completion pum
+      tabouts = {
+        {open = "'", close = "'"},
+        {open = '"', close = '"'},
+        {open = '`', close = '`'},
+        {open = '(', close = ')'},
+        {open = '[', close = ']'},
+        {open = '{', close = '}'}
+      },
+      ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
+      exclude = {} -- tabout will ignore these filetypes
+    }
+  end,
+  wants = {'nvim-treesitter'} -- (optional) or require if not used so far
+  -- after = {'nvim-cmp'} -- if a completion plugin is using tabs load it before
+}
+
+use{'cohama/lexima.vim'}
+
+-- Add smooth scrolling to avoid jarring jumps
+use({
+  'karb94/neoscroll.nvim',
+  config = function()
+    require('neoscroll').setup()
+  end,
+})
+
+use({
+  'sphamba/smear-cursor.nvim',
+  config = function()
+    require('smear_cursor').setup()
   end,
 })
 
