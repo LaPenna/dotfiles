@@ -40,10 +40,12 @@ use({
 
     require('calvera').set()
 
-    vim.api.nvim_set_hl(0, 'FloatBorder', {
-      fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
-      bg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
-    })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#080818" }) -- Replace with your desired background color
+    -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#a9b1d6", bg = "#1e1e2e" }) -- Optional: style the border
+    -- vim.api.nvim_set_hl(0, 'FloatBorder', {
+    --   fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
+    --   bg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
+    -- })
 
     vim.api.nvim_set_hl(0, 'CursorLineBg', {
       fg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
@@ -67,12 +69,7 @@ use ({
   requires = { 'nvim-tree/nvim-web-devicons', opt = true },
   after = 'calvera-dark.nvim',
   config = function()
-    require('lualine').setup {
-      options = {
-        theme  = 'nightfly',
-        globalstatus = true,
-      },
-    }
+    require('lapenna/plugins/lualine')
   end,
 })
 
@@ -225,6 +222,21 @@ use {
   wants = {'nvim-treesitter'} -- (optional) or require if not used so far
   -- after = {'nvim-cmp'} -- if a completion plugin is using tabs load it before
 }
+
+-- Language Server Protocol.
+use({
+  'neovim/nvim-lspconfig',
+  requires = {
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    -- 'b0o/schemastore.nvim',
+    -- 'jose-elias-alvarez/null-ls.nvim',
+    -- 'jayp0521/mason-null-ls.nvim',
+  },
+  config = function()
+    require('lapenna/plugins/lspconfig')
+  end,
+})
 
 use{'cohama/lexima.vim'}
 
