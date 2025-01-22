@@ -36,10 +36,10 @@ vim.keymap.set('', 'gf', ':edit <cfile><CR>')
 -- vim.keymap.set('n', 'p', 'p`[v`]')
 
 -- Easy insertion of a trailing ; or , from insert mode.
--- vim.keymap.set('i', ';;', '<Esc>A;<Esc>')
--- vim.keymap.set('i', ',,', '<Esc>A,<Esc>')
-vim.keymap.set('n', ',,', 'A,<Esc>')
-vim.keymap.set('n', ';;', 'A;<Esc>')
+vim.keymap.set('i', ';;', '<Esc>A;<Esc>')
+vim.keymap.set('i', ',,', '<Esc>A,<Esc>')
+-- vim.keymap.set('n', ',,', 'A,<Esc>')
+-- vim.keymap.set('n', ';;', 'A;<Esc>')
 
 -- open the current file in the default program (on mac this should just be just `open`).
 -- vim.keymap.set('n', '<leader>x', ':!xdg-open %<cr><cr>')
