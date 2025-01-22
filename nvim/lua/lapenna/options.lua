@@ -16,6 +16,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.opt.wildmode = 'longest:full,full' -- easier tabbing autocomplete commands
+vim.opt.completeopt = 'menuone,longest,preview'
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
