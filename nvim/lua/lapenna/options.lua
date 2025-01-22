@@ -37,6 +37,8 @@ vim.opt.clipboard = 'unnamedplus' -- use system clipboard default
 vim.opt.confirm = true -- ask to save file instead of error
 vim.opt.undofile = true
 
+vim.opt.signcolumn = 'yes:2'
+
 -- Cursor sticks to center
 -- vim.keymap.set('n', 'j', 'jzz', { noremap = true })
 -- vim.keymap.set('n', 'k', 'kzz', { noremap = true })
