@@ -11,7 +11,8 @@ require("mason-lspconfig").setup_handlers {
 }
 
 -- PHP
-require('lspconfig').intelephense.setup({ capabilities = capabilities })
+-- require('lspconfig').intelephense.setup({ capabilities = capabilities })
+require'lspconfig'.phpactor.setup{}
 
 -- Vue, JavaScript, TypeScript
 require('lspconfig').volar.setup({
