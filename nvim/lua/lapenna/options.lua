@@ -34,6 +34,8 @@ vim.opt.sidescrolloff = 10
 
 vim.opt.clipboard = 'unnamedplus' -- use system clipboard default
 
+vim.opt.inccommand = 'split' -- preview subtitutions as you type
+
 vim.opt.confirm = true -- ask to save file instead of error
 vim.opt.undofile = true
 
