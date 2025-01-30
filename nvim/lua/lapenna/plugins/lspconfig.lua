@@ -6,13 +6,29 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 
 require("mason-lspconfig").setup_handlers {
   function (server_name) -- default handler (optional)
-    require("lspconfig")[server_name].setup {}
+    require("lspconfig")[server_name].setup {
+      capabilities = capabilities
+    }
   end,
+}
+
+-- lua
+require("lspconfig").lua_ls.setup {
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim", "it", "describe", "before_each", "after_each" },
+      }
+    }
+  }
 }
 
 -- PHP
 -- require('lspconfig').intelephense.setup({ capabilities = capabilities })
-require'lspconfig'.phpactor.setup{}
+require'lspconfig'.phpactor.setup({
+  capabilities = capabilities
+})
 
 -- Vue, JavaScript, TypeScript
 require('lspconfig').volar.setup({
@@ -75,7 +91,7 @@ vim.api.nvim_create_user_command('Format', function() vim.lsp.buf.format({
 
 -- Diagnostic configuration
 vim.diagnostic.config({
-  virtual_text = false,
+  virtual_text = true,
   float = {
     source = true,
   }

@@ -255,8 +255,40 @@ use({
   end,
 })
 
-use{'cohama/lexima.vim'}
+-- PHP Refactoring Tools
+use({
+  'phpactor/phpactor',
+  -- ft = 'php',
+  run = 'composer install --no-dev --optimize-autoloader',
+  config = function()
+    vim.keymap.set('n', '<Leader>pm', ':PhpactorContextMenu<CR>')
+    vim.keymap.set('n', '<Leader>pn', ':PhpactorClassNew<CR>')
+  end,
+})
 
+-- use({
+--   "gbprod/phpactor.nvim",
+--   run = function()
+--     require("phpactor.handler.update")()
+--   end,
+--   requires = {
+--     { "nvim-lua/plenary.nvim" },
+--     { "neovim/nvim-lspconfig" }
+--   },
+--   config = function()
+--     require("phpactor").setup({
+--       install = {
+--         bin = '/usr/local/bin/phpactor'
+--       },
+--       lspconfig = {
+--         enabled = true,
+--         options = {},
+--       },
+--     })
+--   end,
+-- })
+
+use({ "cohama/lexima.vim" })
 -- Add smooth scrolling to avoid jarring jumps
 use({
   'karb94/neoscroll.nvim',
