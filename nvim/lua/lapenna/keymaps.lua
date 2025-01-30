@@ -22,7 +22,7 @@ vim.keymap.set('v', 'p', '"_dP')
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Close all open buffers.
-vim.keymap.set('n', '<leader>Q', ':bufdo bdelete<CR>')
+vim.keymap.set('n', '<leader>Q', ':bufdo bdelete<CR>:Dashboard<CR>')
 vim.keymap.set('n', '<leader>q', ':bd<CR>')
 
 -- Diagnostics.
