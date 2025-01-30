@@ -1,40 +1,37 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Bash
-
 rm -rf $HOME/.bash_aliases
 ln -s $DOTFILES/bash/.bash_aliases $HOME/.bash_aliases
 
 # Kitty
-
 rm -rf $HOME/.config/kitty
 ln -s $DOTFILES/kitty $HOME/.config/kitty
 
 # Zsh
-
 rm -rf $HOME/.zshrc
 ln -s $DOTFILES/zsh/.zshrc $HOME/.zshrc
 
 # Starship
-
 rm -rf $HOME/.config/starship.toml
 ln -s $DOTFILES/starship/starship.toml $HOME/.config/starship.toml
 
 # Tmux
-
 rm -rf $HOME/.tmux.conf
 ln -s $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
 
 # Scripts
-
 # t
 mkdir -p $HOME/.local/bin # ensure dir exists
 rm -rf $HOME/.local/bin/t
 ln -s $DOTFILES/scripts/t $HOME/.local/bin/t
 
 # nvim
-
 rm -rf $HOME/.config/nvim
 ln -s $DOTFILES/nvim $HOME/.config/nvim
+
+# phpactor
+rm -rf $HOME/.config/phpactor
+ln -s $DOTFILES/phpactor $HOME/.config/phpactor
