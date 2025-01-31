@@ -6,6 +6,9 @@ vim.g.maplocalleader = ' '
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
+vim.keymap.set('n', 'H', '^')
+vim.keymap.set('n', 'L', '$')
+
 -- Reselect visual selection after indenting.
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
@@ -24,6 +27,9 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Close all open buffers.
 vim.keymap.set('n', '<leader>Q', ':bufdo bdelete<CR>:Dashboard<CR>')
 vim.keymap.set('n', '<leader>q', ':bd<CR>')
+
+-- Rerun last :command
+vim.keymap.set('n', '<leader>:', ':@:<CR>')
 
 -- Diagnostics.
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [d]iagnostic' })
