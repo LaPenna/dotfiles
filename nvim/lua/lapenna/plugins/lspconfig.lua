@@ -12,6 +12,10 @@ require("mason-lspconfig").setup_handlers {
   end,
 }
 
+require'lspconfig'.jsonls.setup {
+  capabilities = capabilities,
+}
+
 -- lua
 require("lspconfig").lua_ls.setup {
   capabilities = capabilities,
@@ -25,10 +29,10 @@ require("lspconfig").lua_ls.setup {
 }
 
 -- PHP
--- require('lspconfig').intelephense.setup({ capabilities = capabilities })
-require'lspconfig'.phpactor.setup({
-  capabilities = capabilities
-})
+require('lspconfig').intelephense.setup({ capabilities = capabilities })
+-- require'lspconfig'.phpactor.setup({
+--   capabilities = capabilities
+-- })
 
 -- Vue, JavaScript, TypeScript
 require('lspconfig').volar.setup({
