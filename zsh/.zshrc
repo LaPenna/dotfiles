@@ -71,3 +71,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export PATH="/home/klp/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/klp/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+
+## DOCKER
+# Various handy REPL style interactive docker envs here
+alias dpy='docker run -it --rm python:3.9-slim'
