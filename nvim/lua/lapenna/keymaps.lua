@@ -2,6 +2,20 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Swap last two buffers
+vim.keymap.set('n', '<leader><Space>', ':b#<CR>', { noremap = true, silent = true })
+
+-- Run current python file inside given docker container
+vim.keymap.set('n', '<leader>py', ':w<CR>:!docker exec python-container python %<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>p2', ':w<CR>:FloatermToggle<CR> docker exec -it python-container python %<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>p3', ':w<CR>:FloatermToggle<CR> docker exec -it python-container python expand("%:t")<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>p4', function()
+  local filename = vim.fn.expand('%:t') -- Get only the filename
+  vim.cmd('w') -- Save the file
+  vim.cmd('FloatermToggle') -- Open the floating terminal
+  vim.cmd('FloatermSend docker exec python-container python3 /workspace/' .. filename) -- Run command inside it
+end, { noremap = true, silent = true })
+
 -- When text is wrapped, move by terminal rows, not lines, unless a count is provided.
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
