@@ -66,12 +66,27 @@ alias mfs='php artisan migrate:fresh --seed'
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 alias spls='sail artisan'
 
+## END ALIAS
+
+# nvm - Node version manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PATH="/home/klp/.config/herd-lite/bin:$PATH"
-export PHP_INI_SCAN_DIR="/home/klp/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
 ## DOCKER
+#
 # Various handy REPL style interactive docker envs here
-alias dpy='docker run -it --rm python:3.9-slim'
+alias dpy='docker run -it --rm python:3.9-slim python'
+# alias dpy.='docker run -it --rm -v "$(pwd)":/app python:3.9-slim sh -c "python /app/$1; python"'
+dpy.() {
+    if [ -z "$1" ]; then
+        docker run -it --rm -v "$(pwd)":/app python:3.9-slim bash
+        return 1
+    fi
+    docker run -it --rm -v "$(pwd)":/app python:3.9-slim sh -c "python /app/$1; python"
+}
+
+
+## php.new stuff
+export PATH="/home/klp/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="/home/klp/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
