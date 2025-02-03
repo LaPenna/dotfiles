@@ -266,29 +266,17 @@ use({
   end,
 })
 
--- use({
---   "gbprod/phpactor.nvim",
---   run = function()
---     require("phpactor.handler.update")()
---   end,
---   requires = {
---     { "nvim-lua/plenary.nvim" },
---     { "neovim/nvim-lspconfig" }
---   },
---   config = function()
---     require("phpactor").setup({
---       install = {
---         bin = '/usr/local/bin/phpactor'
---       },
---       lspconfig = {
---         enabled = true,
---         options = {},
---       },
---     })
---   end,
--- })
+-- Project Configuration
+use({
+  'tpope/vim-projectionist',
+  required = 'tpope/vim-dispatch',
+  config = function ()
+    require('lapenna/plugins/projectionist')
+  end,
+})
 
 use({ "cohama/lexima.vim" })
+
 -- Add smooth scrolling to avoid jarring jumps
 use({
   'karb94/neoscroll.nvim',
