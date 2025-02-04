@@ -12,8 +12,8 @@ vim.keymap.set('n', '<leader>p3', ':w<CR>:FloatermToggle<CR> docker exec -it pyt
 vim.keymap.set('n', '<leader>p4', function()
   local filename = vim.fn.expand('%:t') -- Get only the filename
   vim.cmd('w') -- Save the file
-  vim.cmd('FloatermToggle') -- Open the floating terminal
-  vim.cmd('FloatermSend docker exec python-container python3 /workspace/' .. filename) -- Run command inside it
+  -- vim.cmd('FloatermToggle') -- Open the floating terminal
+  require('FTerm').run('docker exec python-container python3 /workspace/' .. filename) -- Run command inside it
 end, { noremap = true, silent = true })
 
 -- When text is wrapped, move by terminal rows, not lines, unless a count is provided.

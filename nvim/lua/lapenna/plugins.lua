@@ -11,12 +11,11 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-
 require('packer').reset()
 require('packer').init({
   compile_path = vim.fn.stdpath('data')..'/site/plugin/packer_compiled.lua',
   display = {
-    open_fn = function() 
+    open_fn = function()
       return require('packer.util').float({ border = 'solid' })
     end,
   },
@@ -24,35 +23,64 @@ require('packer').init({
 
 local use = require('packer').use
 use 'wbthomason/packer.nvim'
+
 -- My plugins here
 
 -- Theme
-use({
-  'yashguptaz/calvera-dark.nvim',
-  config = function()
-    -- Optional Example Configuration
-    vim.g.calvera_italic_keywords = true
-    vim.g.calvera_italic_comments = true
-    vim.g.calvera_borders = false
-    vim.g.calvera_contrast = true
-    vim.g.calvera_hide_eob = true
-    vim.g.calvera_custom_colors = {contrast = "#1ce1ce"}
-
-    require('calvera').set()
-
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#080818" }) -- Replace with your desired background color
-    -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#a9b1d6", bg = "#1e1e2e" }) -- Optional: style the border
-    -- vim.api.nvim_set_hl(0, 'FloatBorder', {
-    --   fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
-    --   bg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
-    -- })
-
-    vim.api.nvim_set_hl(0, 'CursorLineBg', {
-      fg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
-      bg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
-    })
-  end,
-})
+use {
+  "catppuccin/nvim",
+  as = "catppuccin",
+  require("catppuccin").setup({
+    flavour = "mocha", -- latte, frappe, macchiato, mocha
+    background = { -- :h background
+      light = "mocha",
+      dark = "mocha",
+    },
+    transparent_background = false, -- disables setting the background color.
+    show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+    term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+    dim_inactive = {
+      enabled = false, -- dims the background color of inactive window
+      shade = "dark",
+      percentage = 0.15, -- percentage of the shade to apply to the inactive window
+    },
+    no_italic = false, -- Force no italic
+    no_bold = false, -- Force no bold
+    no_underline = false, -- Force no underline
+    styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+      comments = { "italic" }, -- Change the style of comments
+      conditionals = { "italic" },
+      loops = {},
+      functions = {},
+      keywords = {},
+      strings = {},
+      variables = {},
+      numbers = {},
+      booleans = {},
+      properties = {},
+      types = {},
+      operators = {},
+      -- miscs = {}, -- Uncomment to turn off hard-coded styles
+    },
+    color_overrides = {},
+    custom_highlights = {},
+    default_integrations = true,
+    integrations = {
+      cmp = true,
+      gitsigns = true,
+      nvimtree = true,
+      treesitter = true,
+      notify = false,
+      mini = {
+        enabled = true,
+        indentscope_color = "",
+      },
+      -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+    },
+  }),
+  -- setup must be called before loading
+  vim.cmd.colorscheme "catppuccin"
+}
 
 use {
   'nvimdev/dashboard-nvim',
@@ -66,8 +94,7 @@ use {
 -- Custom status line
 use ({
   'nvim-lualine/lualine.nvim',
-  requires = { 'nvim-tree/nvim-web-devicons', opt = true },
-  after = 'calvera-dark.nvim',
+  requires = { "catppuccin/nvim", 'nvim-tree/nvim-web-devicons', opt = true },
   config = function()
     require('lapenna/plugins/lualine')
   end,
@@ -149,7 +176,6 @@ use({
 -- Fuzzy finder
 use({
   'nvim-telescope/telescope.nvim',
-  after = 'calvera-dark.nvim',
   requires = {
     'nvim-lua/plenary.nvim',
     'kyazdani42/nvim-web-devicons',
@@ -171,14 +197,49 @@ use({
 })
 
 use({
-  'voldikss/vim-floaterm',
-  config = function()
-    vim.g.floaterm_width = 0.8
-    vim.g.floaterm_height = 0.8
-    vim.keymap.set('n', "<leader>'", ':FloatermToggle<CR>')
-    vim.keymap.set('t', "<esc>", '<C-\\><C-n>:FloatermToggle<CR>')
-  end,
+  'numToStr/FTerm.nvim',
+  config = function ()
+    require('FTerm').setup{
+      dimensions = {
+        height = 0.9,
+        width = 0.9,
+      },
+      blend = 4,
+      border = { "╓", "─", "╖", "║", "╜", "─", "╙", "║" }
+      -- border = { "◇", "═", "◇", "║", "◇", "═", "◇", "║" }
+      -- border = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠇" }
+      -- border = { "⣿", "⠿", "⣿", "⠛", "⠿", "⠿", "⠿", "⠛" }
+    }
+    -- Example keybindings
+    vim.keymap.set('n', "<leader>'", '<CMD>lua require("FTerm").toggle()<CR>')
+    vim.keymap.set('t', '<Esc>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
+
+    vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#8e8edd", bold = true })
+  end
 })
+
+-- use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+--   require("toggleterm").setup{
+--     start_in_insert = false,
+--     persist_mode = true,
+--     direction = 'float',
+--     size = function(term)
+--       if term.direction == "horizontal" then
+--         return 15
+--       elseif term.direction == "vertical" then
+--         return vim.o.columns * 0.4
+--       end
+--     end,
+--     float_opts = {
+--       border = 'curved',
+--       width = math.floor(0.9 * vim.fn.winwidth(0)),
+--       height = math.floor(0.8 * vim.fn.winheight(0)),
+--     }
+--   }
+
+--   vim.keymap.set('n', "<leader>'", ':ToggleTerm<CR>:startinsert<CR>')
+--   vim.keymap.set('t', '<Esc>', '<C-\\><C-n>:ToggleTerm<CR>')
+-- end}
 
 -- Improved syntax highlighting
 use({

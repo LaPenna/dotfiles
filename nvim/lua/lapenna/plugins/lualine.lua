@@ -1,6 +1,6 @@
 require('lualine').setup {
   options = {
-    theme  = 'nightfly',
+    theme  = 'catppuccin',
     globalstatus = true,
     icons_enabled = true,
     component_separators = { left = '', right = ''},
@@ -12,7 +12,6 @@ require('lualine').setup {
     ignore_focus = {},
     always_divide_middle = true,
     always_show_tabline = true,
-    globalstatus = false,
     refresh = {
       statusline = 100,
       tabline = 100,
@@ -45,3 +44,4 @@ require('lualine').setup {
   inactive_winbar = {},
   extensions = {}
 }
+
