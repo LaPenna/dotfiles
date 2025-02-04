@@ -3,6 +3,7 @@ require('mason').setup()
 require('mason-lspconfig').setup({ automatic_installation = true })
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local on_attach = 
 
 require("mason-lspconfig").setup_handlers {
   function (server_name) -- default handler (optional)
@@ -26,6 +27,12 @@ require("lspconfig").lua_ls.setup {
       }
     }
   }
+}
+
+-- Python
+require'lspconfig'.pyright.setup{
+  capabilities = capabilities,
+  filetypes = {"python"},
 }
 
 -- PHP
@@ -58,22 +65,46 @@ require('lspconfig').jsonls.setup({
 -- null-ls
 require('null-ls').setup({
   sources = {
+    -- diagnostics
     require('null-ls').builtins.diagnostics.eslint_d.with({
       condition = function(utils)
         return utils.root_has_file({ '.eslintrc.js' })
       end,
     }),
+
+    require('null-ls').builtins.diagnostics.mypy.with({
+      command = "docker",
+      args = {
+        "run", "--rm", "-v", vim.fn.getcwd() .. ":/app",
+        "python:3.11",
+        "sh", "-c", "pip install mypy > /dev/null && mypy /app"
+      },
+    }),
+    require('null-ls').builtins.diagnostics.ruff.with({
+      command = "docker",
+      args = {
+        "run", "--rm", "-v", vim.fn.getcwd() .. ":/app",
+        "python:3.11",
+        "sh", "-c", "pip install ruff > /dev/null && ruff /app"
+      },
+    }),
+
     require('null-ls').builtins.diagnostics.trail_space.with({ disabled_filetypes = { 'NvimTree' } }),
+
+    -- formatting
     require('null-ls').builtins.formatting.eslint_d.with({
       condition = function(utils)
         return utils.root_has_file({ '.eslintrc.js' })
       end,
     }),
+
     require('null-ls').builtins.formatting.prettierd,
   },
 })
 
-require('mason-null-ls').setup({ automatic_installation = true })
+require('mason-null-ls').setup({
+  automatic_installation = { exclude = { "mypy", "ruff" } },
+})
 
 -- Keymaps
 vim.keymap.set('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
