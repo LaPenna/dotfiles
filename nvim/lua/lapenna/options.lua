@@ -1,7 +1,4 @@
 vim.opt.termguicolors = true
--- Tell Neovim to respect terminal background
-vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
 vim.opt.title = true
 
 vim.opt.expandtab = false
