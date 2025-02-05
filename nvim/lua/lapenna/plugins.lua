@@ -124,6 +124,9 @@ use('tpope/vim-sleuth')
 -- Allow plugins to enable repeating of commands.
 use('tpope/vim-repeat')
 
+-- Write a file containing the current state of Vim
+use('tpope/vim-obsession')
+
 -- Navigate seamlessly between Vim windows and Tmux panes.
 use('christoomey/vim-tmux-navigator')
 
@@ -198,24 +201,9 @@ use({
 
 use({
   'numToStr/FTerm.nvim',
-  config = function ()
-    require('FTerm').setup{
-      dimensions = {
-        height = 0.9,
-        width = 0.9,
-      },
-      blend = 4,
-      border = { "╓", "─", "╖", "║", "╜", "─", "╙", "║" }
-      -- border = { "◇", "═", "◇", "║", "◇", "═", "◇", "║" }
-      -- border = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠇" }
-      -- border = { "⣿", "⠿", "⣿", "⠛", "⠿", "⠿", "⠿", "⠛" }
-    }
-    -- Example keybindings
-    vim.keymap.set('n', "<leader>'", '<CMD>lua require("FTerm").toggle()<CR>')
-    vim.keymap.set('t', '<Esc>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
-
-    vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#8e8edd", bold = true })
-  end
+  config = function()
+    require('lapenna/plugins/fterm')
+  end,
 })
 
 -- use {"akinsho/toggleterm.nvim", tag = '*', config = function()
