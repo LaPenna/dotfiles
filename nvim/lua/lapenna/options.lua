@@ -38,10 +38,6 @@ vim.opt.undofile = true
 
 vim.opt.signcolumn = 'yes:2'
 
--- Cursor sticks to center
--- vim.keymap.set('n', 'j', 'jzz', { noremap = true })
--- vim.keymap.set('n', 'k', 'kzz', { noremap = true })
-
 -- highlight yanked text for 200ms using the "Visual" highlight group
 vim.cmd[[
 augroup highlight_yank
