@@ -6,14 +6,18 @@ vim.g.maplocalleader = ' '
 vim.keymap.set('n', '<leader><Space>', ':b#<CR>', { noremap = true, silent = true })
 
 -- Run current python file inside given docker container
-vim.keymap.set('n', '<leader>py', ':w<CR>:!docker exec python-container python %<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>p2', ':w<CR>:FloatermToggle<CR> docker exec -it python-container python %<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>p3', ':w<CR>:FloatermToggle<CR> docker exec -it python-container python expand("%:t")<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>p4', function()
+vim.keymap.set('n', '<leader>py', function()
   local filename = vim.fn.expand('%:t') -- Get only the filename
   vim.cmd('w') -- Save the file
-  -- vim.cmd('FloatermToggle') -- Open the floating terminal
-  require('FTerm').run('docker exec python-container python3 /workspace/' .. filename) -- Run command inside it
+
+  -- Open the FTerm terminal
+  local fterm = require('FTerm')
+  fterm.toggle()
+
+  -- Send the command to the terminal
+  local cmd = "docker exec py-pip python3 /workspace/" .. filename
+  vim.api.nvim_feedkeys(cmd, 'n', false) -- Send the command to the terminal
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, false, true), 'n', false) -- Send <CR>
 end, { noremap = true, silent = true })
 
 -- When text is wrapped, move by terminal rows, not lines, unless a count is provided.
@@ -80,3 +84,8 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")vim.keymap.set('i', '<A-k>', '<Esc>:
 -- vim.keymap.set('v', '<A-k>', ":move '<-2<CR>gv=gv")
 
 vim.keymap.set("n", "d0", "0D")
+
+-- Cursor sticks to center
+-- vim.keymap.set('n', 'j', 'jzz', { noremap = true })
+-- vim.keymap.set('n', 'k', 'kzz', { noremap = true })
+
