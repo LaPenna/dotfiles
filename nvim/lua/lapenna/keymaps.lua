@@ -15,7 +15,19 @@ vim.keymap.set('n', '<leader>py', function()
   fterm.toggle()
 
   -- Send the command to the terminal
-  local cmd = "docker exec py-pip python3 /workspace/" .. filename
+  local cmd = "docker exec -it py-pip python3 /workspace/" .. filename
+  vim.api.nvim_feedkeys(cmd, 'n', false) -- Send the command to the terminal
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, false, true), 'n', false) -- Send <CR>
+end, { noremap = true, silent = true })
+
+-- Install a pip package in our persisted py-pip container
+vim.keymap.set('n', '<leader>pi', function()
+  local package = vim.fn.input('Enter package name: ')
+  local fterm = require('FTerm')
+  fterm.toggle()
+
+  -- Send the command to the terminal
+  local cmd = 'docker exec -it py-pip pip install ' .. package
   vim.api.nvim_feedkeys(cmd, 'n', false) -- Send the command to the terminal
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, false, true), 'n', false) -- Send <CR>
 end, { noremap = true, silent = true })
