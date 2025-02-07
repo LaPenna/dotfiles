@@ -74,9 +74,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 ## DOCKER
-#
+
+# Because we suck at typing
+alias dokcer=docker
+
 # Various handy REPL style interactive docker envs here
 alias dpy='docker run -it --rm python:3.9-slim python'
+
 # alias dpy.='docker run -it --rm -v "$(pwd)":/app python:3.9-slim sh -c "python /app/$1; python"'
 dpy.() {
     if [ -z "$1" ]; then
