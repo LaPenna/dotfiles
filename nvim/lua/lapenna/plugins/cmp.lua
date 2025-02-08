@@ -47,6 +47,7 @@ cmp.setup({
     { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'path' },
+    { name = "lazydev", group_index = 0 }
   },
   experimental = {
     ghost_text = true,

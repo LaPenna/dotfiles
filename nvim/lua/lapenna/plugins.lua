@@ -279,7 +279,8 @@ use({
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'b0o/schemastore.nvim',
-    'jose-elias-alvarez/null-ls.nvim',
+    'nvimtools/none-ls.nvim',
+    "nvimtools/none-ls-extras.nvim",
     'jayp0521/mason-null-ls.nvim',
   },
   config = function()
@@ -303,6 +304,19 @@ use({
     require('lapenna/plugins/cmp')
   end,
 })
+
+-- Lua support for nvim configs
+use {
+  "folke/lazydev.nvim",
+  ft = "lua", -- only load on lua files
+  config = function()
+    require("lazydev").setup {
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    }
+  end
+}
 
 -- PHP Refactoring Tools
 use({

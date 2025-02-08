@@ -1,9 +1,11 @@
 -- Setup Mason to automatically install LSP servers;
 require('mason').setup()
-require('mason-lspconfig').setup({ automatic_installation = true })
+require('mason-lspconfig').setup({
+  ensure_installed = { exclude = { "pyright" } },
+  automatic_installation = false,
+})
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-local on_attach = 
 
 require("mason-lspconfig").setup_handlers {
   function (server_name) -- default handler (optional)
@@ -29,11 +31,27 @@ require("lspconfig").lua_ls.setup {
   }
 }
 
--- Python
-require'lspconfig'.pyright.setup{
+require('lspconfig').pyright.setup({
   capabilities = capabilities,
-  filetypes = {"python"},
-}
+  cmd = { "docker", "exec", "-i", "py-pip", "pyright-langserver", "--stdio" },
+  root_dir = function(fname)
+    return "/workspace" -- Force root to match inside container
+  end,
+  settings = {
+    python = {
+      pythonPath = "/usr/local/bin/python3",
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+      },
+    },
+  },
+  on_init = function(client)
+    client.config.settings.python.workspaceFolder = "/workspace"
+    client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+  end,
+})
+
 
 -- PHP
 require('lspconfig').intelephense.setup({ capabilities = capabilities })
@@ -66,43 +84,37 @@ require('lspconfig').jsonls.setup({
 require('null-ls').setup({
   sources = {
     -- diagnostics
-    require('null-ls').builtins.diagnostics.eslint_d.with({
-      condition = function(utils)
-        return utils.root_has_file({ '.eslintrc.js' })
-      end,
-    }),
 
-    require('null-ls').builtins.diagnostics.mypy.with({
-      command = "docker",
-      args = {
-        "run", "--rm", "-v", vim.fn.getcwd() .. ":/app",
-        "python:3.11",
-        "sh", "-c", "pip install mypy > /dev/null && mypy /app"
-      },
-    }),
-    require('null-ls').builtins.diagnostics.ruff.with({
-      command = "docker",
-      args = {
-        "run", "--rm", "-v", vim.fn.getcwd() .. ":/app",
-        "python:3.11",
-        "sh", "-c", "pip install ruff > /dev/null && ruff /app"
-      },
-    }),
+    require("none-ls.diagnostics.eslint"),
+
+    -- require('null-ls').builtins.diagnostics.mypy.with({
+    --   command = "docker",
+    --   args = {
+    --     "run", "--rm", "-v", vim.fn.getcwd() .. ":/app",
+    --     "python:3.11",
+    --     "sh", "-c", "pip install mypy > /dev/null && mypy /app"
+    --   },
+    -- }),
+    require('none-ls.formatting.ruff'),
+    require('none-ls.formatting.ruff_format'),
 
     require('null-ls').builtins.diagnostics.trail_space.with({ disabled_filetypes = { 'NvimTree' } }),
 
     -- formatting
-    require('null-ls').builtins.formatting.eslint_d.with({
+    require("none-ls.diagnostics.eslint").with({
       condition = function(utils)
         return utils.root_has_file({ '.eslintrc.js' })
       end,
     }),
 
-    require('null-ls').builtins.formatting.prettierd,
+    require('null-ls').builtins.formatting.prettier.with { filetypes = { 'html', 'json', 'yaml', 'markdown' } },
+    require('none-ls.formatting.ruff').with { extra_args = { '--extend-select', 'I' } },
+    require 'none-ls.formatting.ruff_format',
   },
 })
 
 require('mason-null-ls').setup({
+  ensure_installed = {},
   automatic_installation = { exclude = { "mypy", "ruff" } },
 })
 

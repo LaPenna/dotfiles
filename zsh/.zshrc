@@ -90,6 +90,10 @@ dpy.() {
     docker run -it --rm -v "$(pwd)":/app python:3.9-slim sh -c "python /app/$1; python"
 }
 
+# Start our docker container with persistant pip packages
+# We use this with our nvim keymap <leader>py to run challenge tests
+alias dpi='docker run -d --name py-pip -v python-packages:/root/.local/lib/python3.11/site-packages -v $(pwd):/workspace py-pip'
+
 
 ## php.new stuff
 export PATH="/home/klp/.config/herd-lite/bin:$PATH"
