@@ -31,28 +31,6 @@ require("lspconfig").lua_ls.setup {
   }
 }
 
-require('lspconfig').pyright.setup({
-  capabilities = capabilities,
-  cmd = { "docker", "exec", "-i", "py-pip", "pyright-langserver", "--stdio" },
-  root_dir = function(fname)
-    return "/workspace" -- Force root to match inside container
-  end,
-  settings = {
-    python = {
-      pythonPath = "/usr/local/bin/python3",
-      analysis = {
-        autoSearchPaths = true,
-        useLibraryCodeForTypes = true,
-      },
-    },
-  },
-  on_init = function(client)
-    client.config.settings.python.workspaceFolder = "/workspace"
-    client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-  end,
-})
-
-
 -- PHP
 require('lspconfig').intelephense.setup({ capabilities = capabilities })
 -- require'lspconfig'.phpactor.setup({
