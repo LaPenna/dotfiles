@@ -23,6 +23,7 @@ alias lr='exa -lahR --icons'
 # alias lt='tree -aC'
 # alias ll='ls -l'
 alias ..='cd ../'
+alias qq=exit
 
 ## System Utils
 alias copy="xclip -selection clipboard"
@@ -66,15 +67,6 @@ alias mfs='php artisan migrate:fresh --seed'
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 alias spls='sail artisan'
 
-## END ALIAS
-
-# fnm
-FNM_PATH="/home/klp/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/klp/.local/share/fnm:$PATH"
-  eval "`fnm env`"
-fi
-
 ## DOCKER
 
 # Because we suck at typing
@@ -85,11 +77,11 @@ alias dpy='docker run -it --rm python:3.9-slim python'
 
 # alias dpy.='docker run -it --rm -v "$(pwd)":/app python:3.9-slim sh -c "python /app/$1; python"'
 dpy.() {
-    if [ -z "$1" ]; then
-        docker run -it --rm -v "$(pwd)":/app python:3.9-slim bash
-        return 1
-    fi
-    docker run -it --rm -v "$(pwd)":/app python:3.9-slim sh -c "python /app/$1; python"
+if [ -z "$1" ]; then
+    docker run -it --rm -v "$(pwd)":/app python:3.9-slim bash
+    return 1
+fi
+docker run -it --rm -v "$(pwd)":/app python:3.9-slim sh -c "python /app/$1; python"
 }
 
 # Start our docker container with persistant pip packages
@@ -103,6 +95,14 @@ alias py=python3
 alias python=python3
 alias pyact="source venv/bin/activate"
 
+## END ALIAS
+
+# fnm
+FNM_PATH="/home/klp/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/klp/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
 ## php.new stuff
 export PATH="/home/klp/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/klp/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
