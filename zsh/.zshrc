@@ -68,10 +68,12 @@ alias spls='sail artisan'
 
 ## END ALIAS
 
-# nvm - Node version manager
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# fnm
+FNM_PATH="/home/klp/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/klp/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
 
 ## DOCKER
 
@@ -94,7 +96,14 @@ dpy.() {
 # We use this with our nvim keymap <leader>py to run challenge tests
 alias dpi='docker run -d --name py-pip -v python-packages:/root/.local/lib/python3.11/site-packages -v $(pwd):/workspace py-pip'
 
+#
+## Python
+#
+alias py=python3
+alias python=python3
+alias pyact="source venv/bin/activate"
 
 ## php.new stuff
 export PATH="/home/klp/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/klp/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+
