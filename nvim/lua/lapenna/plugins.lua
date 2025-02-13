@@ -28,22 +28,22 @@ use 'wbthomason/packer.nvim'
 
 -- -- Theme
 use {"tiagovla/tokyodark.nvim"}
--- vim.cmd [[colorscheme tokyodark]]
+vim.cmd [[colorscheme tokyodark]]
 
-use {
-  "scottmckendry/cyberdream.nvim",
-  config = function ()
-    require("cyberdream").setup({
-        -- Set light or dark variant
-        variant = "default", -- use "light" for the light variant. Also accepts "auto" to set dark or light colors based on the current value of `vim.o.background`
-        transparent = false,
-        italic_comments = true,
-        hide_fillchars = false,
-        borderless_pickers = false,
-      })
-      vim.cmd [[colorscheme tokyodark]]
-  end
-}
+-- use {
+--   "scottmckendry/cyberdream.nvim",
+--   config = function ()
+--     require("cyberdream").setup({
+--         -- Set light or dark variant
+--         variant = "default", -- use "light" for the light variant. Also accepts "auto" to set dark or light colors based on the current value of `vim.o.background`
+--         transparent = false,
+--         italic_comments = true,
+--         hide_fillchars = false,
+--         borderless_pickers = false,
+--       })
+--       vim.cmd [[colorscheme tokyodark]]
+--   end
+-- }
 
 -- catpuccinn
 -- use {
@@ -372,6 +372,16 @@ use({
   config = function()
     require('smear_cursor').setup()
   end,
+})
+
+use({
+  'ggandor/leap.nvim',
+  config = function()
+    vim.keymap.set({'n', 'x'}, '<C-f>', '<Plug>(leap)', { noremap = true, silent = true })
+    vim.keymap.set({'n', 'x', 'o'}, 'ga',  function ()
+      require('leap.treesitter').select()
+    end)
+  end
 })
 
 -- Automatically set up your configuration after cloning packer.nvim
