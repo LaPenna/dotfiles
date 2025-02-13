@@ -56,6 +56,10 @@ require('telescope').setup({
   },
 })
 
+vim.cmd [[
+  highlight TelescopeSelection guibg=#2a2a37 guifg=#c0caf5
+  highlight TelescopeSelectionCaret guifg=#ff9e64 guibg=#2a2a37
+]]
 require('telescope').load_extension('fzf')
 
 vim.keymap.set('n', '<leader>f', [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
