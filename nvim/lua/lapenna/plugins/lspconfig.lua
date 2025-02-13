@@ -1,7 +1,10 @@
 -- Setup Mason to automatically install LSP servers;
 require('mason').setup()
 require('mason-lspconfig').setup({
-  ensure_installed = { exclude = { "pyright" } },
+  ensure_installed = {
+    "lua_ls",
+    "pyright"
+  },
   automatic_installation = false,
 })
 
@@ -13,6 +16,14 @@ require("mason-lspconfig").setup_handlers {
       capabilities = capabilities
     }
   end,
+}
+
+
+require("lspconfig").pyright.setup {}
+
+require("lspconfig").ruff.setup {
+  cmd = { 'docker', 'exec', '-i', 'py-pip', 'ruff', 'server' },
+  root_dir = "/workspace"
 }
 
 require'lspconfig'.jsonls.setup {
