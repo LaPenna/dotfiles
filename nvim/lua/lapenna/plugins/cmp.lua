@@ -53,4 +53,10 @@ cmp.setup({
   experimental = {
     ghost_text = true,
   },
+  window = {
+    completion = {
+      border = "rounded",
+      winhighlight = "Normal:CmpNormal",
+    },
+  },
 })
