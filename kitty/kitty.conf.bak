@@ -3,7 +3,7 @@ bold_font JetBrainsMono NF Bold
 bold_italic_font JetBrainsMono NF Bold Italic
 italic_font JetBrainsMono NF Italic
 
-font_size 11.5
+font_size 4
 
 adjust_line_height 150%
 cursor_blink_interval 0

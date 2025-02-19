@@ -4,10 +4,10 @@ $os\
 $username\
 [](bg:#DA627D fg:#9A348E)\
 $directory\
-[](fg:#DA627D bg:#1CE1CE)\
+[](fg:#DA627D bg:#33658A)\
 $git_branch\
 $git_status\
-[](fg:#1CE1CE bg:#86BBD8)\
+[](fg:#33658A bg:#86BBD8)\
 $c\
 $elixir\
 $elm\
@@ -34,7 +34,7 @@ $time\
 # and use the os module below
 [username]
 show_always = true
-style_user = "bg:#9A348E"
+style_user = "bg:#9A348E fg:#FFFFFF"
 style_root = "bg:#9A348E"
 format = '[$user 🔥]($style)'
 disabled = false
@@ -46,7 +46,7 @@ style = "bg:#9A348E"
 disabled = true # Disabled by default
 
 [directory]
-style = "bg:#DA627D"
+style = "bg:#DA627D fg:#FFFFFF"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -86,11 +86,11 @@ format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
 symbol = ""
-style = "bg:#1CE1CE fg:#1A2B3C"
+style = "bg:#33658A fg:#FFFFFF"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#1CE1CE fg:#1A2B3C"
+style = "bg:#33658A fg:#FFFFFF"
 format = '[$all_status$ahead_behind ]($style)'
 
 [golang]
