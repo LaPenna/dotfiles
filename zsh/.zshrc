@@ -37,6 +37,31 @@ alias subdir-sizes='find . -mindepth 2 -maxdepth 2 -type d -exec du -sh {} + | s
 ## Media
 alias yt='mpv --no-video'
 alias yts='function _yts() { video_info=$(yt-dlp --no-warnings --print "title" --get-url "ytsearch1:$*"); video_title=$(echo "$video_info" | head -n 1); video_url=$(echo "$video_info" | tail -n 1); echo "Now playing: $video_title"; mpv --no-video "$video_url"; }; _yts'
+ytpl() {
+    if [ -z "$1" ]; then
+        echo "Usage: play_playlist <playlist_url>"
+        return 1
+    fi
+
+    PLAYLIST_URL="$1"
+
+    # Extract video titles and URLs from the playlist
+    video_info=$(yt-dlp --flat-playlist --print "%(title)s || %(url)s" "$PLAYLIST_URL" 2>/dev/null)
+
+    if [ -z "$video_info" ]; then
+        echo "No videos found in the playlist."
+        return 1
+    fi
+
+    # Loop through each video's title and URL
+    echo "$video_info" | while IFS='||' read -r video_title video_url; do
+        # Trim leading/trailing whitespace from the title and URL
+        video_title=$(echo "$video_title" | xargs)
+        video_url=$(echo "$video_url" | xargs)
+
+        yts "$video_title"
+    done
+}
 
 ## Git
 alias gis='git status'
