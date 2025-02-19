@@ -5,52 +5,11 @@ vim.g.maplocalleader = " "
 -- Swap last two buffers
 vim.keymap.set("n", "<leader><Space>", ":b#<CR>", { noremap = true, silent = true })
 
--- Run current python file in floating term
-vim.keymap.set("n", "<leader>py", function()
-  local filename = vim.fn.expand("%:t") -- Get only the filename
-  vim.cmd("w") -- Save the file
-
-  -- Open the FTerm terminal
-  local fterm = require("FTerm")
-  fterm.toggle()
-
-  -- Send the command to the terminal
-  local cmd = "python3 " .. filename
-  vim.api.nvim_feedkeys(cmd, "n", false) -- Send the command to the terminal
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", false) -- Send <CR>
-end, { noremap = true, silent = true })
-
--- Run current python file inside given docker container
-vim.keymap.set("n", "<leader>dpy", function()
-  local filename = vim.fn.expand("%:t") -- Get only the filename
-  vim.cmd("w") -- Save the file
-
-  -- Open the FTerm terminal
-  local fterm = require("FTerm")
-  fterm.toggle()
-
-  -- Send the command to the terminal
-  local cmd = "docker exec -it py-pip python3 /workspace/" .. filename
-  vim.api.nvim_feedkeys(cmd, "n", false) -- Send the command to the terminal
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", false) -- Send <CR>
-end, { noremap = true, silent = true })
-
--- Install a pip package in our persisted py-pip container
-vim.keymap.set("n", "<leader>dpi", function()
-  local package = vim.fn.input("Enter package name: ")
-  local fterm = require("FTerm")
-  fterm.toggle()
-
-  -- Send the command to the terminal
-  local cmd = "docker exec -it py-pip pip install " .. package
-  vim.api.nvim_feedkeys(cmd, "n", false) -- Send the command to the terminal
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", false) -- Send <CR>
-end, { noremap = true, silent = true })
-
 -- When text is wrapped, move by terminal rows, not lines, unless a count is provided.
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
+vim.keymap.set("n", "<C-a>", "ggVG")
 vim.keymap.set("n", "H", "^")
 vim.keymap.set("n", "L", "$")
 
@@ -116,3 +75,45 @@ vim.keymap.set("n", "d0", "0D")
 -- Cursor sticks to center
 -- vim.keymap.set('n', 'j', 'jzz', { noremap = true })
 -- vim.keymap.set('n', 'k', 'kzz', { noremap = true })
+
+-- Run current python file in floating term
+vim.keymap.set("n", "<leader>py", function()
+  local filename = vim.fn.expand("%:t") -- Get only the filename
+  vim.cmd("w") -- Save the file
+
+  -- Open the FTerm terminal
+  local fterm = require("FTerm")
+  fterm.toggle()
+
+  -- Send the command to the terminal
+  local cmd = "python3 " .. filename
+  vim.api.nvim_feedkeys(cmd, "n", false) -- Send the command to the terminal
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", false) -- Send <CR>
+end, { noremap = true, silent = true })
+
+-- Run current python file inside given docker container
+vim.keymap.set("n", "<leader>dpy", function()
+  local filename = vim.fn.expand("%:t") -- Get only the filename
+  vim.cmd("w") -- Save the file
+
+  -- Open the FTerm terminal
+  local fterm = require("FTerm")
+  fterm.toggle()
+
+  -- Send the command to the terminal
+  local cmd = "docker exec -it py-pip python3 /workspace/" .. filename
+  vim.api.nvim_feedkeys(cmd, "n", false) -- Send the command to the terminal
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", false) -- Send <CR>
+end, { noremap = true, silent = true })
+
+-- Install a pip package in our persisted py-pip container
+vim.keymap.set("n", "<leader>dpi", function()
+  local package = vim.fn.input("Enter package name: ")
+  local fterm = require("FTerm")
+  fterm.toggle()
+
+  -- Send the command to the terminal
+  local cmd = "docker exec -it py-pip pip install " .. package
+  vim.api.nvim_feedkeys(cmd, "n", false) -- Send the command to the terminal
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", false) -- Send <CR>
+end, { noremap = true, silent = true })

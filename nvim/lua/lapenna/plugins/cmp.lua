@@ -10,6 +10,10 @@ local has_words_before = function()
 end
 
 cmp.setup({
+  preselect = "None",
+  completion = {
+    completeopt = "menu,menuone,noinsert,noselect",
+  },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -39,7 +43,7 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<CR>"] = cmp.mapping.confirm({ select = false }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
   },
   sources = {
