@@ -36,7 +36,7 @@ alias subdir-sizes='find . -mindepth 2 -maxdepth 2 -type d -exec du -sh {} + | s
 
 ## Media
 alias yt='mpv --no-video'
-alias yts='function _yts() { video_info=$(yt-dlp --no-warnings --print "title" --get-url "ytsearch1:$*"); video_title=$(echo "$video_info" | head -n 1); video_url=$(echo "$video_info" | tail -n 1); echo "Now playing: $video_title"; mpv --no-video "$video_url"; }; _yts'
+alias yts='function _yts() { video_info=$(yt-dlp --no-warnings --print "title" --get-url "ytsearch1:$*"); video_title=$(echo "$video_info" | head -n 1); video_url=$(echo "$video_info" | tail -n 1); echo "Now playing: $video_title"; mpv --no-video --volume=20 "$video_url"; }; _yts'
 ytpl() {
     if [ -z "$1" ]; then
         echo "Usage: play_playlist <playlist_url>"
