@@ -99,6 +99,8 @@ alias dokcer=docker
 
 # we often spawn a shell into a container
 alias dit='docker exec -it'
+# boot into our kali instance
+alias dkali='docker exec -it exciting_torvalds bash'
 
 # Various handy REPL style interactive docker envs here
 alias dpy='docker run -it --rm python:3.9-slim python'
