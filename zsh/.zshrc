@@ -97,6 +97,9 @@ alias spls='sail artisan'
 # Because we suck at typing
 alias dokcer=docker
 
+# we often spawn a shell into a container
+alias dit='docker exec -it'
+
 # Various handy REPL style interactive docker envs here
 alias dpy='docker run -it --rm python:3.9-slim python'
 
