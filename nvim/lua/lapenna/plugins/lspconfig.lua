@@ -110,7 +110,8 @@ require("null-ls").setup({
     -- Python
     -- require("null-ls.builtins.diagnostics.mypy"),
     -- require("none-ls.formatting.ruff").with({ extra_args = { "--extend-select", "I" } }),
-    require("none-ls.formatting.ruff_format"),
+    -- require("none-ls.formatting.ruff_format"),
+    require("null-ls").builtins.formatting.black,
   },
 })
 
