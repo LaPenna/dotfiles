@@ -2,6 +2,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Centre the editor when going to last line
+vim.keymap.set("n", "G", "Gzz")
+
 -- Swap last two buffers
 vim.keymap.set("n", "<leader><Space>", ":b#<CR>", { noremap = true, silent = true })
 
