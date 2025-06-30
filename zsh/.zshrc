@@ -137,3 +137,5 @@ fi
 export PATH="/home/klp/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/klp/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
+# add nvim to path
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"

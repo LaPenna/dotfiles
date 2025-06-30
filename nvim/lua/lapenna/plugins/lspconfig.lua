@@ -10,22 +10,23 @@ require("mason-lspconfig").setup({
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-require("mason-lspconfig").setup_handlers({
-  function(server_name) -- default handler (optional)
-    require("lspconfig")[server_name].setup({
-      capabilities = capabilities,
-    })
-  end,
-})
-
--- require("lspconfig").pyright.setup({})
--- require("lspconfig").basedpyright.setup({
---   capabilities = capabilities,
+-- require("mason-lspconfig").setup_handlers({
+--   function(server_name) -- default handler (optional)
+--     require("lspconfig")[server_name].setup({
+--       capabilities = capabilities,
+--     })
+--   end,
 -- })
 
-require("lspconfig").jedi_language_server.setup({
+-- require("lspconfig").pyright.setup({})
+
+require("lspconfig").basedpyright.setup({
   capabilities = capabilities,
 })
+
+-- require("lspconfig").jedi_language_server.setup({
+--   capabilities = capabilities,
+-- })
 
 require("lspconfig").jsonls.setup({
   capabilities = capabilities,

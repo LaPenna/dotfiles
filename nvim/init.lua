@@ -1,21 +1,24 @@
-require('lapenna/plugins')
-require('lapenna/options')
-require('lapenna/keymaps')
-require('lapenna/commands')
+require("lapenna/plugins")
+require("lapenna/options")
+require("lapenna/keymaps")
+require("lapenna/commands")
 
-if vim.fn.exists('$TMUX') == 1 then
+-- Fix socket in use issue
+vim.g.nvim_listen_address = "/tmp/nvim-" .. os.getenv("USER") .. ".sock"
+
+if vim.fn.exists("$TMUX") == 1 then
   -- Rename tmux window when entering a buffer
   vim.api.nvim_create_autocmd("BufEnter", {
     callback = function()
       local filename = vim.fn.expand("%:t")
       vim.fn.system("tmux rename-window '" .. filename .. "'")
-    end
+    end,
   })
 
   -- Restore tmux automatic window renaming when leaving Vim
   vim.api.nvim_create_autocmd("VimLeave", {
     callback = function()
       vim.fn.system("tmux setw automatic-rename")
-    end
+    end,
   })
 end
