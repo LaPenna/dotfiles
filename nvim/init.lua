@@ -3,9 +3,6 @@ require("lapenna/options")
 require("lapenna/keymaps")
 require("lapenna/commands")
 
--- Fix socket in use issue
-vim.g.nvim_listen_address = "/tmp/nvim-" .. os.getenv("USER") .. ".sock"
-
 if vim.fn.exists("$TMUX") == 1 then
   -- Rename tmux window when entering a buffer
   vim.api.nvim_create_autocmd("BufEnter", {
