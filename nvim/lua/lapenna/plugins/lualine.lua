@@ -1,10 +1,10 @@
-require('lualine').setup {
+require("lualine").setup({
   options = {
-    theme  = 'auto',
+    theme = "auto",
     globalstatus = true,
     icons_enabled = true,
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
     disabled_filetypes = {
       statusline = {},
       winbar = {},
@@ -16,32 +16,31 @@ require('lualine').setup {
       statusline = 100,
       tabline = 100,
       winbar = 100,
-    }
+    },
   },
   sections = {
-    lualine_a = {'mode'},
+    lualine_a = { "mode" },
     lualine_b = {
-      'branch',
-      'diff',
-      '"🖧  " .. tostring(#vim.tbl_keys(vim.lsp.buf_get_clients()))',
-      'diagnostics',
+      "branch",
+      "diff",
+      '"🖧  " .. tostring(#vim.tbl_keys(vim.lsp.get_clients()))',
+      "diagnostics",
     },
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
+    lualine_c = { "filename" },
+    lualine_x = { "encoding", "fileformat", "filetype" },
+    lualine_y = { "progress" },
+    lualine_z = { "location" },
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
+    lualine_c = { "filename" },
+    lualine_x = { "location" },
     lualine_y = {},
-    lualine_z = {}
+    lualine_z = {},
   },
   tabline = {},
   winbar = {},
   inactive_winbar = {},
-  extensions = {}
-}
-
+  extensions = {},
+})
