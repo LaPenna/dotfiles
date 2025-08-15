@@ -56,7 +56,7 @@ require("lspconfig").volar.setup({
   capabilities = capabilities,
   -- Enable "Take Over Mode" where volar will provide all JS/TS LSP services
   -- This drastically improves the responsiveness of diagnostic updates on change
-  filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+  filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "js", "ts" },
 })
 
 -- Tailwind CSS
@@ -103,7 +103,9 @@ require("null-ls").setup({
     }),
 
     -- Prettier
-    require("null-ls").builtins.formatting.prettier.with({ filetypes = { "html", "json", "yaml", "markdown" } }),
+    require("null-ls").builtins.formatting.prettier.with({
+      filetypes = { "html", "json", "yaml", "markdown", "js", "ts", "javascript", "typescript" },
+    }),
     require("null-ls").builtins.formatting.stylua.with({
       extra_args = { "--indent-type", "Spaces", "--indent-width", "2" },
     }),
