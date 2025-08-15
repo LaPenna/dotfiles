@@ -8,7 +8,7 @@ VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 
 export EDITOR=nvim
 export GIT_EDITOR=nvim
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+export NVIM_LISTEN_ADDRESS=
 export LS_COLORS="ln=01;36:di=01;34:fi=0:*.txt=01;32"
 # Alias
 
@@ -36,7 +36,7 @@ alias subdir-sizes='find . -mindepth 2 -maxdepth 2 -type d -exec du -sh {} + | s
 
 ## Media
 alias yt='mpv --no-video'
-alias yts='function _yts() { video_info=$(yt-dlp --no-warnings --print "title" --get-url "ytsearch1:$*"); video_title=$(echo "$video_info" | head -n 1); video_url=$(echo "$video_info" | tail -n 1); echo "Now playing: $video_title"; mpv --no-video --volume=20 "$video_url"; }; _yts'
+alias yts='function _yts() { video_info=$(yt-dlp --no-warnings --print "title" --get-url "ytsearch1:$*"); video_title=$(echo "$video_info" | head -n 1); video_url=$(echo "$video_info" | tail -n 1); echo "Now playing: $video_title"; mpv --no-video --volume=40 "$video_url"; }; _yts'
 ytpl() {
     if [ -z "$1" ]; then
         echo "Usage: play_playlist <playlist_url>"
@@ -139,3 +139,9 @@ export PHP_INI_SCAN_DIR="/home/klp/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
 # add nvim to path
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
+# add flutter to path
+export PATH="$PATH:/home/klp/code/flutter/bin"
+
+# mssql server path
+export PATH="$PATH:/opt/mssql-tools/bin"
