@@ -153,6 +153,16 @@ vim.diagnostic.config({
   },
 })
 
+-- Pick a subtle gray for each diagnostic level
+vim.cmd([[
+  highlight DiagnosticVirtualTextError guifg=#aa5555 gui=italic
+  highlight DiagnosticVirtualTextWarn  guifg=#aaaa55 gui=italic
+  highlight DiagnosticVirtualTextInfo  guifg=#5599aa gui=italic
+  highlight DiagnosticVirtualTextHint  guifg=#55aa55 gui=italic
+]])
+
+vim.keymap.set("n", "<leader>-", vim.diagnostic.open_float)
+
 -- Sign configuration
 vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
