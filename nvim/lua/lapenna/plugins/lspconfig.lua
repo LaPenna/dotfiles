@@ -141,6 +141,25 @@ vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>")
 vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
 -- vim.keymap.set('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
 
+-- Modern way: override hover handler with border
+vim.lsp.handlers["textDocument/hover"] = function(err, result, ctx, _)
+  if err then
+    return
+  end
+  if not (result and result.contents) then
+    return
+  end
+  local bufnr, winnr = vim.lsp.util.open_floating_preview(
+    vim.lsp.util.convert_input_to_markdown_lines(result.contents),
+    "markdown",
+    { border = "rounded" } -- "single", "double", "solid", "shadow" etc.
+  )
+  return bufnr, winnr
+end
+-- Change shift+K hover style
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#141421" }) -- pick a color
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#aaaaaa" }) -- border color
+
 -- Commands
 vim.api.nvim_create_user_command("Format", function()
   vim.lsp.buf.format({
