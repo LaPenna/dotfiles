@@ -123,8 +123,16 @@ require("mason-null-ls").setup({
   automatic_installation = { exclude = {} },
 })
 
+-- Commands
+-- Toggle inline diagnostics
+vim.api.nvim_create_user_command("ToggleDiagnostics", function()
+  local current = vim.diagnostic.config().virtual_text
+  vim.diagnostic.config({ virtual_text = not current })
+end, {})
+
 -- Keymaps
-vim.keymap.set("n", "<Leader>d", "<cmd>lua vim.diagnostic.open_float()<CR>")
+vim.keymap.set("n", "<leader>dt", "<cmd>ToggleDiagnostics<cr>")
+vim.keymap.set("n", "<Leader>ds", "<cmd>lua vim.diagnostic.open_float()<CR>")
 vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
 vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
@@ -155,16 +163,27 @@ vim.diagnostic.config({
 
 -- Pick a subtle gray for each diagnostic level
 vim.cmd([[
-  highlight DiagnosticVirtualTextError guifg=#aa5555 gui=italic
-  highlight DiagnosticVirtualTextWarn  guifg=#aaaa55 gui=italic
-  highlight DiagnosticVirtualTextInfo  guifg=#5599aa gui=italic
-  highlight DiagnosticVirtualTextHint  guifg=#55aa55 gui=italic
+  highlight DiagnosticVirtualTextError guifg=#4a2b2b gui=italic
+  highlight DiagnosticVirtualTextWarn  guifg=#353725 gui=italic
+  highlight! link DiagnosticVirtualTextInfo  Comment
+  highlight! link DiagnosticVirtualTextHint  Comment
 ]])
 
 vim.keymap.set("n", "<leader>-", vim.diagnostic.open_float)
 
--- Sign configuration
-vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
-vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
-vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
-vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = "",
+    },
+    texthl = {
+      [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+      [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+      [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+      [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+    },
+  },
+})
