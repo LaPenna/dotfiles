@@ -145,3 +145,11 @@ export PATH="$PATH:/home/klp/code/flutter/bin"
 
 # mssql server path
 export PATH="$PATH:/opt/mssql-tools/bin"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+# Pyenv-virtualenv
+eval "$(pyenv virtualenv-init -)"
